@@ -19,6 +19,8 @@ const config: Config = {
         'base-card': '#F3F2F2',
         'purple-dark': '#4B2995',
         'base-button': '#E6E5E5',
+        'base-input': '#EDEDED',
+        'yellow-brand': '#DBAC2C',
       },
       textColor: {
         'purple-dark': '#4B2995', // Substitua pela cor desejada
@@ -27,6 +29,9 @@ const config: Config = {
         'base-label': '#8D8686', // Substitua pela cor desejada
         'base-text': '#574F4D', // Substitua pela cor desejada
         'yellow-dark': '#C47F17', // Substitua pela cor desejada
+      },
+      borderColor: {
+        'base-button': '#E6E5E5',
       },
       fontFamily: {
         sans: ['var(--font-baloo)'],

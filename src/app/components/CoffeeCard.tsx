@@ -1,9 +1,22 @@
+'use client'
 import Image from 'next/image'
+import { useState } from 'react'
 import CupCoffee from '../../assets/cup_coffee.svg'
 import ShopWhite from '../../assets/shop_white.svg'
 import { baloo } from '../fonts'
 
 export const CoffeeCard = () => {
+  const [quantity, setQuantity] = useState(1)
+
+  const handleIncrement = () => {
+    setQuantity(quantity + 1)
+  }
+
+  const handleDecrement = () => {
+    // Adicione lógica de verificação para garantir que a quantidade nunca seja menor que 1
+    setQuantity(quantity > 1 ? quantity - 1 : 1)
+  }
+
   return (
     <div className="bg-base-card w-72 p-6 space-y-3 rounded-bl-3xl rounded-tr-3xl mb-6">
       <div className="flex flex-col items-center">
@@ -28,9 +41,13 @@ export const CoffeeCard = () => {
         </p>
         <div className="flex space-x-2">
           <div className="flex ml-3 bg-base-button items-center space-x-2 px-3 text-xl rounded-md">
-            <button className="text-purple-medium">-</button>
-            <p>1</p>
-            <button className="text-purple-medium">+</button>
+            <button className="text-purple-medium" onClick={handleDecrement}>
+              -
+            </button>
+            <p>{quantity}</p>
+            <button className="text-purple-medium" onClick={handleIncrement}>
+              +
+            </button>
           </div>
           <Image src={ShopWhite} alt="shop_white" />
         </div>
