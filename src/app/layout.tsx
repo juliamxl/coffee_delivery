@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 // eslint-disable-next-line camelcase
 import { roboto } from '../../src/app/fonts'
+import { CartProvider } from './contexts/shopContext'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -14,8 +15,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={roboto.className}>{children}</body>
-    </html>
+    <CartProvider>
+      <html lang="en">
+        <body className={roboto.className}>{children}</body>
+      </html>
+    </CartProvider>
   )
 }

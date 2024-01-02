@@ -1,20 +1,39 @@
-'use client'
 import Image from 'next/image'
 import { useState } from 'react'
 import CupCoffee from '../../assets/cup_coffee.svg'
 import ShopWhite from '../../assets/shop_white.svg'
+import { useCart } from '../contexts/shopContext'
 import { baloo } from '../fonts'
 
-export const CoffeeCard = () => {
+interface Coffee {
+  id: number
+  nome: string
+  categoria: string
+  descricao: string
+  preco: number
+  imagem?: string
+}
+
+interface CoffeeCardProps {
+  coffee: Coffee
+}
+
+export const CoffeeCard = ({ coffee }: CoffeeCardProps) => {
   const [quantity, setQuantity] = useState(1)
+  const { addToCart } = useCart()
 
   const handleIncrement = () => {
     setQuantity(quantity + 1)
   }
 
   const handleDecrement = () => {
-    // Adicione lógica de verificação para garantir que a quantidade nunca seja menor que 1
     setQuantity(quantity > 1 ? quantity - 1 : 1)
+  }
+
+  const handleShop = (quantity: number) => {
+    const total = quantity * coffee.preco
+    const item = { coffee, quantity, total }
+    addToCart(item)
   }
 
   return (
@@ -26,18 +45,18 @@ export const CoffeeCard = () => {
           className="relative -top-12 -mb-8"
         />
         <div className="bg-yellow-light py-1 px-2 rounded-full">
-          <p className=" text-yellow-dark font-bold text-xs ">TRADICIONAL</p>
+          <p className=" text-yellow-dark font-bold text-xs">
+            {coffee.categoria}
+          </p>
         </div>
       </div>
       <div className="text-center space-y-2">
-        <p className={`${baloo.className} text-xl`}>Expresso Tradicional</p>
-        <p className="text-base-label">
-          O tradicional café feito com água quente e graõs moídos
-        </p>
+        <p className={`${baloo.className} text-xl`}>{coffee.nome}</p>
+        <p className="text-base-label">{coffee.descricao}</p>
       </div>
-      <div className="flex justify-between ">
+      <div className="flex justify-between">
         <p className={`${baloo.className} text-base-text`}>
-          R$ <span className="text-3xl">9,90</span>
+          R$ <span className="text-3xl">{coffee.preco.toFixed(2)}</span>
         </p>
         <div className="flex space-x-2">
           <div className="flex ml-3 bg-base-button items-center space-x-2 px-3 text-xl rounded-md">
@@ -49,7 +68,12 @@ export const CoffeeCard = () => {
               +
             </button>
           </div>
-          <Image src={ShopWhite} alt="shop_white" />
+          <Image
+            src={ShopWhite}
+            alt="shop_white"
+            className="hover:cursor-pointer"
+            onClick={() => handleShop(quantity)}
+          />
         </div>
       </div>
     </div>

@@ -1,13 +1,33 @@
+'use client'
 import Image from 'next/image'
-import credit from '../../assets/credit.svg'
-import debit from '../../assets/debit.svg'
+import { useEffect, useState } from 'react'
+import Cash from '../../assets/cash.svg'
+import Credit from '../../assets/credit.svg'
+import Debit from '../../assets/debit.svg'
 import mapOrange from '../../assets/map_orange.svg'
-import money from '../../assets/money.svg'
 import Header from '../components/Header'
+import { Pay } from '../components/Pay'
 import { ShopCard } from '../components/ShopCard'
+import { useCart } from '../contexts/shopContext'
 import { baloo } from '../fonts'
 
 export const Checkout = () => {
+  const { getCart } = useCart()
+  const [cartItems, setCartItems] = useState([])
+  const [activePayIndex, setActivePayIndex] = useState<number | undefined>(
+    undefined,
+  )
+
+  useEffect(() => {
+    // Chama a função getCart para obter os itens do carrinho
+    const items = getCart()
+    setCartItems(items)
+  }, [])
+
+  const handlePayClick = (index: number) => {
+    setActivePayIndex(index)
+  }
+
   return (
     <div>
       <Header />
@@ -79,18 +99,24 @@ export const Checkout = () => {
               </div>
             </div>
             <div className="grid grid-cols-3 gap-6">
-              <div className="bg-base-button p-5 flex rounded-md space-x-2 flex items-center justify-center text-base-text">
-                <Image src={debit} alt="Débito" className="w-6" />
-                <p>CARTÃO DE CRÉDITO</p>
-              </div>
-              <div className="bg-base-button p-5 flex rounded-md space-x-2 flex justify-center items-center text-base-text">
-                <Image src={credit} alt="Débito" className="w-6" />
-                <p>CARTÃO DE CRÉDITO</p>
-              </div>
-              <div className="bg-base-button p-5 flex rounded-md space-x-2 flex justify-center items-center text-base-text">
-                <Image src={money} alt="Débito" className="w-6" />
-                <p>CARTÃO DE CRÉDITO</p>
-              </div>
+              <Pay
+                title="CARTÃO DE CRÉDITO"
+                image={Credit}
+                onClick={() => handlePayClick(0)}
+                isActive={activePayIndex === 0}
+              />
+              <Pay
+                title="CARTÃO DE DÉBITO"
+                image={Debit}
+                onClick={() => handlePayClick(1)}
+                isActive={activePayIndex === 1}
+              />
+              <Pay
+                title="DINHEIRO"
+                image={Cash}
+                onClick={() => handlePayClick(2)}
+                isActive={activePayIndex === 2}
+              />
             </div>
           </div>
         </div>
@@ -98,8 +124,9 @@ export const Checkout = () => {
           <p className={`${baloo.className} text-xl`}>Cafés selecionados</p>
           <div className="bg-base-card rounded-bl-3xl rounded-tr-3xl p-12 space-y-4 ">
             <div className=" space-y-6">
-              <ShopCard />
-              <ShopCard />
+              {cartItems.map((item, index) => (
+                <ShopCard key={index} item={item} />
+              ))}
             </div>
             <div className="space-y-2">
               <div className="flex justify-between text-base-text">

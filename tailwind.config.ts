@@ -21,6 +21,7 @@ const config: Config = {
         'base-button': '#E6E5E5',
         'base-input': '#EDEDED',
         'yellow-brand': '#DBAC2C',
+        'base-hover': '#D7D5D5',
       },
       textColor: {
         'purple-dark': '#4B2995', // Substitua pela cor desejada
@@ -32,6 +33,7 @@ const config: Config = {
       },
       borderColor: {
         'base-button': '#E6E5E5',
+        'purple-medium': '#8047F8',
       },
       fontFamily: {
         sans: ['var(--font-baloo)'],
