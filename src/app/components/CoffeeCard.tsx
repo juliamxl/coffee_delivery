@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import { useState } from 'react'
-import CupCoffee from '../../assets/cup_coffee.svg'
 import ShopWhite from '../../assets/shop_white.svg'
 import { useCart } from '../contexts/shopContext'
 import { baloo } from '../fonts'
@@ -11,7 +10,7 @@ interface Coffee {
   categoria: string
   descricao: string
   preco: number
-  imagem?: string
+  imagem: string
 }
 
 interface CoffeeCardProps {
@@ -40,7 +39,7 @@ export const CoffeeCard = ({ coffee }: CoffeeCardProps) => {
     <div className="bg-base-card w-72 p-6 space-y-3 rounded-bl-3xl rounded-tr-3xl mb-6">
       <div className="flex flex-col items-center">
         <Image
-          src={CupCoffee}
+          src={coffee.imagem}
           alt="cup_coffee"
           className="relative -top-12 -mb-8"
         />

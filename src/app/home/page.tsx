@@ -2,9 +2,15 @@
 import Image from 'next/image'
 import BannerImage from '../../assets/banner.svg'
 import Box from '../../assets/box.svg'
+import Cappucino from '../../assets/cappucino.svg'
 import Clock from '../../assets/clock.svg'
 import Coffee from '../../assets/coffee.svg'
+import CupCoffee from '../../assets/cup_coffee.svg'
+import Gelato from '../../assets/gelato.svg'
+import Latte from '../../assets/latte.svg'
+import Mocha from '../../assets/mocha.svg'
 import Shop from '../../assets/shop_rounded.svg'
+import Vanilla from '../../assets/vanilla.svg'
 import { CoffeeCard } from '../components/CoffeeCard'
 import Header from '../components/Header'
 import { baloo } from '../fonts'
@@ -15,7 +21,7 @@ interface Cafe {
   categoria: string
   descricao: string
   preco: number
-  imagem?: string // O campo imagem é opcional
+  imagem: string // O campo imagem é opcional
 }
 
 // Crie um array de objetos com 6 cafés
@@ -26,6 +32,7 @@ const cafes: Cafe[] = [
     categoria: 'Tradicional',
     descricao: 'O tradicional café feito com água quente e grãos moídos',
     preco: 9.9,
+    imagem: CupCoffee,
   },
   {
     id: 2,
@@ -33,6 +40,7 @@ const cafes: Cafe[] = [
     categoria: 'Especial',
     descricao: 'Um cappuccino especial com espuma de leite e canela',
     preco: 12.5,
+    imagem: Cappucino,
   },
   {
     id: 3,
@@ -40,6 +48,7 @@ const cafes: Cafe[] = [
     categoria: 'Tradicional com Leite',
     descricao: 'Um café latte com uma mancha de leite vaporizado',
     preco: 11.75,
+    imagem: Latte,
   },
   {
     id: 4,
@@ -47,6 +56,7 @@ const cafes: Cafe[] = [
     categoria: 'Especial',
     descricao: 'Um mocha delicioso com café, leite vaporizado e chocolate',
     preco: 14.2,
+    imagem: Mocha,
   },
   {
     id: 5,
@@ -54,6 +64,7 @@ const cafes: Cafe[] = [
     categoria: 'Tradicional',
     descricao: 'Um café refrescante servido com gelo e opcionalmente com leite',
     preco: 10.5,
+    imagem: Gelato,
   },
   {
     id: 5,
@@ -61,6 +72,7 @@ const cafes: Cafe[] = [
     categoria: 'Especial',
     descricao: 'Café aromatizado com baunilha e levemente adoçado',
     preco: 13.25,
+    imagem: Vanilla,
   },
 ]
 

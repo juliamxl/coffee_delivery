@@ -11,21 +11,43 @@ import { ShopCard } from '../components/ShopCard'
 import { useCart } from '../contexts/shopContext'
 import { baloo } from '../fonts'
 
+interface CheckoutItem {
+  coffee: {
+    nome: string
+    preco: number
+    id: number
+    imagem: string
+  }
+  quantity: number
+  total: number
+}
+
 export const Checkout = () => {
-  const { getCart } = useCart()
-  const [cartItems, setCartItems] = useState([])
+  const { getCart, cart } = useCart()
+  const [cartItems, setCartItems] = useState<CheckoutItem[]>([])
   const [activePayIndex, setActivePayIndex] = useState<number | undefined>(
     undefined,
   )
+  const [cartTotal, setCartTotal] = useState<string>('0.00')
 
   useEffect(() => {
-    // Chama a função getCart para obter os itens do carrinho
     const items = getCart()
     setCartItems(items)
-  }, [])
+    setCartTotal(calculateTotal(items))
+  }, [cart])
 
   const handlePayClick = (index: number) => {
     setActivePayIndex(index)
+  }
+
+  const calculateTotalItems = (items: CheckoutItem[]) => {
+    return items.reduce((total, item) => total + item.total, 0).toFixed(2)
+  }
+
+  const calculateTotal = (items: CheckoutItem[]) => {
+    const totalItems = calculateTotalItems(items)
+    const deliveryCost = 3.5
+    return (parseFloat(totalItems) + deliveryCost).toFixed(2)
   }
 
   return (
@@ -131,7 +153,9 @@ export const Checkout = () => {
             <div className="space-y-2">
               <div className="flex justify-between text-base-text">
                 <p>Total de itens</p>
-                <p className={`${baloo.className} font-normal`}>R$ 29,70</p>
+                <p className={`${baloo.className} font-normal`}>
+                  R$ {calculateTotalItems(cartItems)}
+                </p>
               </div>
               <div className="flex justify-between text-base-text">
                 <p>Entrega</p>
@@ -139,7 +163,7 @@ export const Checkout = () => {
               </div>
               <div className="flex justify-between text-base-text font-semibold text-xl">
                 <p>Total</p>
-                <p className={`${baloo.className}`}>R$ 33,20</p>
+                <p className={`${baloo.className}`}>R$ {cartTotal}</p>
               </div>
             </div>
             <div>

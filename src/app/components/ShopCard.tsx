@@ -1,8 +1,13 @@
 'use client'
 import Image from 'next/image'
 import { useState } from 'react'
-import coffee from '../../assets/cup_coffee.svg'
+import Cappucino from '../../assets/cappucino.svg'
+import CupCoffee from '../../assets/cup_coffee.svg'
+import Gelato from '../../assets/gelato.svg'
+import Latte from '../../assets/latte.svg'
+import Mocha from '../../assets/mocha.svg'
 import trash from '../../assets/trash.svg'
+import Vanilla from '../../assets/vanilla.svg'
 import { useCart } from '../contexts/shopContext'
 
 interface ShopCardProps {
@@ -22,18 +27,37 @@ export const ShopCard = ({ item }: ShopCardProps) => {
   const [quantityChange, setQuantityChange] = useState(item.quantity)
   const [total, setTotal] = useState(item.total)
 
+  const getCoffeeImage = (coffeeName: string) => {
+    switch (coffeeName) {
+      case 'Expresso Tradicional':
+        return CupCoffee
+      case 'Cappuccino Especial':
+        return Cappucino
+      case 'Latte Macchiato':
+        return Latte
+      case 'Mocha de Chocolate':
+        return Mocha
+      case 'Café Gelado':
+        return Gelato
+      case 'Café com Baunilha':
+        return Vanilla
+    }
+  }
+
   const handleIncrement = () => {
-    setQuantityChange(quantityChange + 1)
-    setTotal(total + item.coffee.preco)
+    setQuantityChange((prevQuantity) => prevQuantity + 1)
+    setTotal((prevTotal) => prevTotal + item.coffee.preco)
     updateCartItem(item, quantityChange + 1, total + item.coffee.preco)
   }
 
   const handleDecrement = () => {
-    setQuantityChange(quantityChange > 1 ? quantityChange - 1 : 1)
-    setTotal(
-      total === item.coffee.preco
+    setQuantityChange((prevQuantity) =>
+      prevQuantity > 1 ? prevQuantity - 1 : 1,
+    )
+    setTotal((prevTotal) =>
+      prevTotal === item.coffee.preco
         ? item.coffee.preco
-        : total - item.coffee.preco,
+        : prevTotal - item.coffee.preco,
     )
     updateCartItem(
       item,
@@ -44,9 +68,11 @@ export const ShopCard = ({ item }: ShopCardProps) => {
     )
   }
 
+  const coffeeImage = getCoffeeImage(item.coffee.nome)
+
   return (
     <div className="flex space-x-6 pb-6 border-b-2">
-      <Image src={coffee} alt="coffee" className="w-16" />
+      <Image src={coffeeImage} alt="coffee" className="w-16" />
       <div className="space-y-2 w-full">
         <div className="flex justify-between text-base-text font-bold">
           <p>{item.coffee.nome}</p>

@@ -27,6 +27,12 @@ export const CartProvider = ({ children }) => {
     })
   }
 
+  const calculateCartTotal = () => {
+    const storedCart = JSON.parse(localStorage.getItem('cart') || '[]')
+    const total = storedCart.reduce((acc, item) => acc + item.total, 0)
+    return (total + 3.5).toFixed(2)
+  }
+
   const updateCartItem = (item, newQuantity, newTotal) => {
     const storedCart = JSON.parse(localStorage.getItem('cart'))
 
@@ -37,6 +43,7 @@ export const CartProvider = ({ children }) => {
     )
 
     localStorage.setItem('cart', JSON.stringify(updatedCart))
+    setCart(getCart())
   }
 
   const clearCart = () => {
@@ -52,6 +59,7 @@ export const CartProvider = ({ children }) => {
         clearCart,
         getCart,
         updateCartItem,
+        calculateCartTotal,
       }}
     >
       {children}
