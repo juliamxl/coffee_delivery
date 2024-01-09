@@ -1,9 +1,17 @@
+'use client'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import Logo from '../../assets/coffee_logo.svg'
 import MapPin from '../../assets/map_pin.svg'
 import Shop from '../../assets/shop.svg'
 
 export default function Header() {
+  const router = useRouter()
+
+  const handleClick = () => {
+    router.push(`/checkout`)
+  }
+
   return (
     <div className="h-28 flex items-center justify-between">
       <Image src={Logo} alt="logo" />
@@ -12,7 +20,10 @@ export default function Header() {
           <Image src={MapPin} alt="mappin" />
           <p>Porto Alegre, RS</p>
         </div>
-        <div className="bg-yellow-light w-10 flex items-center justify-center rounded-md">
+        <div
+          className="bg-yellow-light w-10 flex items-center justify-center rounded-md hover:cursor-pointer"
+          onClick={handleClick}
+        >
           <Image src={Shop} alt="shop" />
         </div>
       </div>

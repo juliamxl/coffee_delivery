@@ -36,7 +36,7 @@ export const CoffeeCard = ({ coffee }: CoffeeCardProps) => {
   }
 
   return (
-    <div className="bg-base-card w-72 p-6 space-y-3 rounded-bl-3xl rounded-tr-3xl mb-6">
+    <div className="bg-base-card w-72 p-6 space-y-3 rounded-bl-3xl rounded-tr-3xl rounded-br-md rounded-tl-md mb-6">
       <div className="flex flex-col items-center">
         <Image
           src={coffee.imagem}

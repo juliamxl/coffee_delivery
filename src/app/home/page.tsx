@@ -67,7 +67,55 @@ const cafes: Cafe[] = [
     imagem: Gelato,
   },
   {
-    id: 5,
+    id: 6,
+    nome: 'Café com Baunilha',
+    categoria: 'Especial',
+    descricao: 'Café aromatizado com baunilha e levemente adoçado',
+    preco: 13.25,
+    imagem: Vanilla,
+  },
+  {
+    id: 7,
+    nome: 'Café com Baunilha',
+    categoria: 'Especial',
+    descricao: 'Café aromatizado com baunilha e levemente adoçado',
+    preco: 13.25,
+    imagem: Vanilla,
+  },
+  {
+    id: 8,
+    nome: 'Café com Baunilha',
+    categoria: 'Especial',
+    descricao: 'Café aromatizado com baunilha e levemente adoçado',
+    preco: 13.25,
+    imagem: Vanilla,
+  },
+  {
+    id: 9,
+    nome: 'Café com Baunilha',
+    categoria: 'Especial',
+    descricao: 'Café aromatizado com baunilha e levemente adoçado',
+    preco: 13.25,
+    imagem: Vanilla,
+  },
+  {
+    id: 10,
+    nome: 'Café com Baunilha',
+    categoria: 'Especial',
+    descricao: 'Café aromatizado com baunilha e levemente adoçado',
+    preco: 13.25,
+    imagem: Vanilla,
+  },
+  {
+    id: 11,
+    nome: 'Café com Baunilha',
+    categoria: 'Especial',
+    descricao: 'Café aromatizado com baunilha e levemente adoçado',
+    preco: 13.25,
+    imagem: Vanilla,
+  },
+  {
+    id: 12,
     nome: 'Café com Baunilha',
     categoria: 'Especial',
     descricao: 'Café aromatizado com baunilha e levemente adoçado',
@@ -80,10 +128,10 @@ export const Home = () => {
   return (
     <div>
       <Header />
-      <div className="flex mt-14">
+      <div className="flex mt-14 justify-between">
         <div className="w-[50%] space-y-16">
           <div className="space-y-8">
-            <p className={`${baloo.className} font-extrabold text-6xl`}>
+            <p className={`${baloo.className} font-extrabold text-7xl`}>
               Encontre o café perfeito para qualquer hora do dia
             </p>
             <p className="text-3xl text-base-subtitle">
@@ -110,18 +158,16 @@ export const Home = () => {
             </div>
           </div>
         </div>
-        <div className="flex w-auto ml-32">
+        <div className="flex w-auto">
           <Image src={BannerImage} alt="banner_image" className="w-[40rem]" />
         </div>
       </div>
-      <div className="">
+      <div className="w-full">
         <p className={`${baloo.className} text-3xl mb-14`}>Nossos cafés</p>
-        <div className="flex flex-wrap gap-5">
-          <div className="flex flex-wrap gap-5">
-            {cafes.map((coffee, index) => (
-              <CoffeeCard key={index} coffee={coffee} />
-            ))}
-          </div>
+        <div className="flex flex-wrap  gap-x-14">
+          {cafes.map((coffee, index) => (
+            <CoffeeCard key={index} coffee={coffee} />
+          ))}
         </div>
       </div>
     </div>

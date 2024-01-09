@@ -18,7 +18,7 @@ export const Pay = ({ title, image, onClick, isActive }: PayProps) => {
           : 'bg-base-button'
       }`}
     >
-      <Image src={image} alt="Débito" className="w-6" />
+      <Image src={image} alt={title} className="w-6" />
       <p>{title}</p>
     </div>
   )

@@ -23,7 +23,7 @@ interface ShopCardProps {
 }
 
 export const ShopCard = ({ item }: ShopCardProps) => {
-  const { updateCartItem } = useCart()
+  const { updateCartItem, removeFromCart } = useCart()
   const [quantityChange, setQuantityChange] = useState(item.quantity)
   const [total, setTotal] = useState(item.total)
 
@@ -70,6 +70,10 @@ export const ShopCard = ({ item }: ShopCardProps) => {
 
   const coffeeImage = getCoffeeImage(item.coffee.nome)
 
+  const handleRemoveFromCart = () => {
+    removeFromCart(item.coffee.id)
+  }
+
   return (
     <div className="flex space-x-6 pb-6 border-b-2">
       <Image src={coffeeImage} alt="coffee" className="w-16" />
@@ -88,9 +92,11 @@ export const ShopCard = ({ item }: ShopCardProps) => {
               +
             </button>
           </div>
-          <div className="flex bg-base-button p-2 rounded-md text-base-text font-medium">
+          <div className="flex bg-base-button p-2 rounded-md text-base-text font-medium hover:bg-base-hover">
             <Image src={trash} alt="trash" />
-            <button className="text-xs">REMOVER</button>
+            <button className="text-xs" onClick={handleRemoveFromCart}>
+              REMOVER
+            </button>
           </div>
         </div>
       </div>

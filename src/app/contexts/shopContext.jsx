@@ -19,10 +19,12 @@ export const CartProvider = ({ children }) => {
     return storedCart // Retornar o carrinho
   }
 
-  const removeFromCart = (index) => {
+  const removeFromCart = (coffeeId) => {
     setCart((prevCart) => {
-      const newCart = [...prevCart]
-      newCart.splice(index, 1)
+      const newCart = prevCart.filter(
+        (cartItem) => cartItem.coffee.id !== coffeeId,
+      )
+      localStorage.setItem('cart', JSON.stringify(newCart))
       return newCart
     })
   }

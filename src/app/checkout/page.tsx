@@ -23,6 +23,13 @@ interface CheckoutItem {
 }
 
 export const Checkout = () => {
+  const [cep, setCep] = useState('')
+  const [rua, setRua] = useState('')
+  const [numero, setNumero] = useState('')
+  const [bairro, setBairro] = useState('')
+  const [cidade, setCidade] = useState('')
+  const [complemento, setComplemento] = useState('')
+  const [uf, setUf] = useState('')
   const { getCart, cart } = useCart()
   const [cartItems, setCartItems] = useState<CheckoutItem[]>([])
   const [activePayIndex, setActivePayIndex] = useState<number | undefined>(
@@ -50,6 +57,13 @@ export const Checkout = () => {
     return (parseFloat(totalItems) + deliveryCost).toFixed(2)
   }
 
+  const handleConfirmPedido = () => {
+    // Validação dos campos de input
+    if (!cep || !rua || !numero || !complemento || !bairro || !cidade || !uf) {
+      alert('Preencha todos os campos de endereço.')
+    }
+  }
+
   return (
     <div>
       <Header />
@@ -72,36 +86,50 @@ export const Checkout = () => {
               <div>
                 <input
                   placeholder="CEP"
+                  value={cep}
+                  onChange={(e) => setCep(e.target.value)}
                   className="bg-base-input border-solid border-2 border-base-button rounded-md h-9 outline-none p-2"
                 />
               </div>
               <div>
                 <input
                   placeholder="Rua"
+                  value={rua}
+                  onChange={(e) => setRua(e.target.value)}
                   className="bg-base-input border-solid border-2 border-base-button rounded-md h-9  w-full outline-none p-2"
                 />
               </div>
               <div className="grid grid-cols-7 gap-3">
                 <input
                   placeholder="Número"
+                  value={numero}
+                  onChange={(e) => setNumero(e.target.value)}
                   className="bg-base-input border-solid border-2 border-base-button rounded-md h-9 col-span-2 outline-none p-2"
                 />
                 <input
                   placeholder="Complemento"
+                  value={complemento}
+                  onChange={(e) => setComplemento(e.target.value)}
                   className="bg-base-input border-solid border-2 border-base-button rounded-md h-9 col-span-5 outline-none p-2"
                 />
               </div>
               <div className="grid grid-cols-7 gap-3">
                 <input
                   placeholder="Bairro"
+                  value={bairro}
+                  onChange={(e) => setBairro(e.target.value)}
                   className="bg-base-input border-solid border-2 border-base-button rounded-md h-9 col-span-2 outline-none p-2"
                 />
                 <input
                   placeholder="Cidade"
+                  value={cidade}
+                  onChange={(e) => setCidade(e.target.value)}
                   className="bg-base-input border-solid border-2 border-base-button rounded-md h-9 col-span-4 outline-none p-2"
                 />
                 <input
                   placeholder="UF"
+                  value={uf}
+                  onChange={(e) => setUf(e.target.value)}
                   className="bg-base-input border-solid border-2 border-base-button rounded-md h-9 col-span-1 outline-none p-2"
                 />
               </div>
@@ -144,7 +172,7 @@ export const Checkout = () => {
         </div>
         <div className="col-span-2 space-y-4">
           <p className={`${baloo.className} text-xl`}>Cafés selecionados</p>
-          <div className="bg-base-card rounded-bl-3xl rounded-tr-3xl p-12 space-y-4 ">
+          <div className="bg-base-card rounded-bl-3xl rounded-tr-3xl rounded-br-md rounded-tl-md p-12 space-y-4 ">
             <div className=" space-y-6">
               {cartItems.map((item, index) => (
                 <ShopCard key={index} item={item} />
@@ -167,7 +195,10 @@ export const Checkout = () => {
               </div>
             </div>
             <div>
-              <button className="bg-yellow-brand text-white w-full p-4 rounded-lg font-medium">
+              <button
+                className="bg-yellow-brand text-white w-full p-4 rounded-lg font-medium"
+                onClick={handleConfirmPedido}
+              >
                 CONFIRMAR PEDIDO
               </button>
             </div>
