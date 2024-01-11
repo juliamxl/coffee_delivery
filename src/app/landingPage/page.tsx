@@ -1,12 +1,36 @@
+'use client'
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
 import Clock from '../../assets/clock.svg'
 import DeliveryIMG from '../../assets/delivery.svg'
 import Local from '../../assets/local.svg'
 import Pay from '../../assets/pay.svg'
 import Header from '../components/Header'
+import { useCart } from '../contexts/shopContext'
 import { baloo } from '../fonts'
 
+interface Adress {
+  cep: string
+  rua: string
+  numero: string
+  complemento: string
+  bairro: string
+  cidade: string
+  uf: string
+}
+
 export const LandingPage = () => {
+  const { getAdress, getFormPayment } = useCart()
+  const [endereco, setEndereco] = useState<Adress | undefined>(undefined)
+  const [formaPagamento, setFormaPagamento] = useState('')
+
+  useEffect(() => {
+    const adress = getAdress()
+    const payment = getFormPayment
+    setEndereco(adress)
+    setFormaPagamento(payment)
+  }, [])
+
   return (
     <div>
       <Header />
@@ -25,9 +49,14 @@ export const LandingPage = () => {
                   <Image src={Local} alt="shop" />
                   <div className="flex-col">
                     <p>
-                      Entrega em <b>Rua João Daniel Martinelli, 102</b>
+                      Entrega em{' '}
+                      <b>
+                        {endereco?.rua}, {endereco?.numero}
+                      </b>
                     </p>
-                    <p>Farrapos - Porto Alegre, RS</p>
+                    <p>
+                      {endereco?.bairro} - {endereco?.cidade}, {endereco?.uf}
+                    </p>
                   </div>
                 </div>
                 <div className="flex text-lg space-x-3 text-base-text">
@@ -40,8 +69,8 @@ export const LandingPage = () => {
                 <div className="flex text-lg space-x-3 text-base-text">
                   <Image src={Pay} alt="shop" />
                   <div className="flex-col">
-                    <p>Entrega em Rua João Daniel Martinelli, 102</p>
-                    <b>Cartão de Crédito</b>
+                    <p>Pagamento na entrega</p>
+                    <b>{formaPagamento}</b>
                   </div>
                 </div>
               </div>

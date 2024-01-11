@@ -10,6 +10,7 @@ import { Pay } from '../components/Pay'
 import { ShopCard } from '../components/ShopCard'
 import { useCart } from '../contexts/shopContext'
 import { baloo } from '../fonts'
+import { useRouter } from 'next/navigation'
 
 interface CheckoutItem {
   coffee: {
@@ -23,6 +24,7 @@ interface CheckoutItem {
 }
 
 export const Checkout = () => {
+  const router = useRouter()
   const [cep, setCep] = useState('')
   const [rua, setRua] = useState('')
   const [numero, setNumero] = useState('')
@@ -30,7 +32,8 @@ export const Checkout = () => {
   const [cidade, setCidade] = useState('')
   const [complemento, setComplemento] = useState('')
   const [uf, setUf] = useState('')
-  const { getCart, cart } = useCart()
+  const { getCart, cart, atualizarEndereco, atualizarFormaPagamento } =
+    useCart()
   const [cartItems, setCartItems] = useState<CheckoutItem[]>([])
   const [activePayIndex, setActivePayIndex] = useState<number | undefined>(
     undefined,
@@ -61,6 +64,21 @@ export const Checkout = () => {
     // Validação dos campos de input
     if (!cep || !rua || !numero || !complemento || !bairro || !cidade || !uf) {
       alert('Preencha todos os campos de endereço.')
+    } else {
+      atualizarEndereco({ cep, rua, numero, complemento, bairro, cidade, uf })
+      if (activePayIndex !== undefined) {
+        // Defina a forma de pagamento com base no índice ativo
+        let formaDePagamentoSelecionada = ''
+        if (activePayIndex === 0) {
+          formaDePagamentoSelecionada = 'Cartão de Crédito'
+        } else if (activePayIndex === 1) {
+          formaDePagamentoSelecionada = 'Cartão de Débito'
+        } else if (activePayIndex === 2) {
+          formaDePagamentoSelecionada = 'Dinheiro'
+        }
+        atualizarFormaPagamento(formaDePagamentoSelecionada)
+      }
+      router.push(`/landingPage`)
     }
   }
 

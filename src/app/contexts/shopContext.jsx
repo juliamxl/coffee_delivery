@@ -7,6 +7,8 @@ const CartContext = createContext()
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([])
+  const [endereco, setEndereco] = useState({})
+  const [formaPagamento, setFormaPagamento] = useState('')
 
   const addToCart = (item) => {
     const storedCart = JSON.parse(localStorage.getItem('cart') || '[]')
@@ -17,6 +19,16 @@ export const CartProvider = ({ children }) => {
   const getCart = () => {
     const storedCart = JSON.parse(localStorage.getItem('cart') || '[]')
     return storedCart // Retornar o carrinho
+  }
+
+  const getAdress = () => {
+    const storedAdress = JSON.parse(localStorage.getItem('endereco') || '[]')
+    return storedAdress // Retornar o carrinho
+  }
+
+  const getFormPayment = () => {
+    const storedPay = JSON.parse(localStorage.getItem('formaPagamento') || '[]')
+    return storedPay // Retornar o carrinho
   }
 
   const removeFromCart = (coffeeId) => {
@@ -52,6 +64,18 @@ export const CartProvider = ({ children }) => {
     setCart([])
   }
 
+  const atualizarEndereco = (novoEndereco) => {
+    setEndereco(novoEndereco)
+    localStorage.setItem('endereco', JSON.stringify(novoEndereco))
+  }
+
+  const atualizarFormaPagamento = (novaFormaPagamento) => {
+    setFormaPagamento(novaFormaPagamento)
+    localStorage.setItem('formaPagamento', JSON.stringify(novaFormaPagamento))
+  }
+
+  console.log(endereco)
+
   return (
     <CartContext.Provider
       value={{
@@ -62,6 +86,12 @@ export const CartProvider = ({ children }) => {
         getCart,
         updateCartItem,
         calculateCartTotal,
+        endereco,
+        formaPagamento,
+        atualizarEndereco,
+        atualizarFormaPagamento,
+        getFormPayment,
+        getAdress,
       }}
     >
       {children}

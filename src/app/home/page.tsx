@@ -10,7 +10,6 @@ import Gelato from '../../assets/gelato.svg'
 import Latte from '../../assets/latte.svg'
 import Mocha from '../../assets/mocha.svg'
 import Shop from '../../assets/shop_rounded.svg'
-import Vanilla from '../../assets/vanilla.svg'
 import { CoffeeCard } from '../components/CoffeeCard'
 import Header from '../components/Header'
 import { baloo } from '../fonts'
@@ -68,59 +67,35 @@ const cafes: Cafe[] = [
   },
   {
     id: 6,
-    nome: 'Café com Baunilha',
+    nome: 'Café Especial de Caramelo',
     categoria: 'Especial',
-    descricao: 'Café aromatizado com baunilha e levemente adoçado',
+    descricao: 'Café especial com delicioso sabor de caramelo',
     preco: 13.25,
-    imagem: Vanilla,
+    imagem: Cappucino,
   },
   {
     id: 7,
-    nome: 'Café com Baunilha',
+    nome: 'Café Especial de Amêndoas',
     categoria: 'Especial',
-    descricao: 'Café aromatizado com baunilha e levemente adoçado',
+    descricao: 'Café especial com aroma e sabor irresistíveis de amêndoas',
     preco: 13.25,
-    imagem: Vanilla,
+    imagem: Cappucino,
   },
   {
     id: 8,
-    nome: 'Café com Baunilha',
+    nome: 'Café Especial de Avelã',
     categoria: 'Especial',
-    descricao: 'Café aromatizado com baunilha e levemente adoçado',
+    descricao: 'Café especial com notas marcantes de avelã',
     preco: 13.25,
-    imagem: Vanilla,
+    imagem: Cappucino,
   },
   {
     id: 9,
-    nome: 'Café com Baunilha',
+    nome: 'Café Especial de Morango',
     categoria: 'Especial',
-    descricao: 'Café aromatizado com baunilha e levemente adoçado',
+    descricao: 'Café especial com o doce sabor de morango',
     preco: 13.25,
-    imagem: Vanilla,
-  },
-  {
-    id: 10,
-    nome: 'Café com Baunilha',
-    categoria: 'Especial',
-    descricao: 'Café aromatizado com baunilha e levemente adoçado',
-    preco: 13.25,
-    imagem: Vanilla,
-  },
-  {
-    id: 11,
-    nome: 'Café com Baunilha',
-    categoria: 'Especial',
-    descricao: 'Café aromatizado com baunilha e levemente adoçado',
-    preco: 13.25,
-    imagem: Vanilla,
-  },
-  {
-    id: 12,
-    nome: 'Café com Baunilha',
-    categoria: 'Especial',
-    descricao: 'Café aromatizado com baunilha e levemente adoçado',
-    preco: 13.25,
-    imagem: Vanilla,
+    imagem: Cappucino,
   },
 ]
 
