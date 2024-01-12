@@ -21,6 +21,7 @@ const config: Config = {
         'base-button': '#E6E5E5',
         'base-input': '#EDEDED',
         'yellow-brand': '#DBAC2C',
+        'yellow-dark': '#C47F17',
         'base-hover': '#D7D5D5',
       },
       textColor: {
@@ -37,6 +38,9 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['var(--font-baloo)'],
+      },
+      spacing: {
+        '150px': '150px', // Adicione o valor desejado
       },
     },
   },

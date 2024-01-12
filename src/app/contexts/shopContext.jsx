@@ -74,7 +74,14 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem('formaPagamento', JSON.stringify(novaFormaPagamento))
   }
 
-  console.log(endereco)
+  const getCartItemQuantity = () => {
+    const storedCart = JSON.parse(localStorage.getItem('cart') || '[]')
+    const totalQuantity = storedCart.reduce(
+      (acc, item) => acc + item.quantity,
+      0,
+    )
+    return totalQuantity
+  }
 
   return (
     <CartContext.Provider
@@ -92,6 +99,7 @@ export const CartProvider = ({ children }) => {
         atualizarFormaPagamento,
         getFormPayment,
         getAdress,
+        getCartItemQuantity,
       }}
     >
       {children}
