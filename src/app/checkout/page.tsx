@@ -1,5 +1,6 @@
 'use client'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import Cash from '../../assets/cash.svg'
 import Credit from '../../assets/credit.svg'
@@ -10,7 +11,6 @@ import { Pay } from '../components/Pay'
 import { ShopCard } from '../components/ShopCard'
 import { useCart } from '../contexts/shopContext'
 import { baloo } from '../fonts'
-import { useRouter } from 'next/navigation'
 
 interface CheckoutItem {
   coffee: {
@@ -119,6 +119,7 @@ export const Checkout = () => {
               </div>
               <div className="grid grid-cols-7 gap-3">
                 <input
+                  type="number"
                   placeholder="Número"
                   value={numero}
                   onChange={(e) => setNumero(e.target.value)}
@@ -214,7 +215,7 @@ export const Checkout = () => {
             </div>
             <div>
               <button
-                className="bg-yellow-brand text-white w-full p-4 rounded-lg font-medium"
+                className="bg-yellow-brand text-white w-full p-4 rounded-lg font-medium hover:bg-yellow-dark"
                 onClick={handleConfirmPedido}
               >
                 CONFIRMAR PEDIDO

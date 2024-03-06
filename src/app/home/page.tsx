@@ -65,38 +65,6 @@ const cafes: Cafe[] = [
     preco: 10.5,
     imagem: Gelato,
   },
-  {
-    id: 6,
-    nome: 'Café Especial de Caramelo',
-    categoria: 'Especial',
-    descricao: 'Café especial com delicioso sabor de caramelo',
-    preco: 13.25,
-    imagem: Cappucino,
-  },
-  {
-    id: 7,
-    nome: 'Café Especial de Amêndoas',
-    categoria: 'Especial',
-    descricao: 'Café especial com aroma e sabor irresistíveis de amêndoas',
-    preco: 13.25,
-    imagem: Cappucino,
-  },
-  {
-    id: 8,
-    nome: 'Café Especial de Avelã',
-    categoria: 'Especial',
-    descricao: 'Café especial com notas marcantes de avelã',
-    preco: 13.25,
-    imagem: Cappucino,
-  },
-  {
-    id: 9,
-    nome: 'Café Especial de Morango',
-    categoria: 'Especial',
-    descricao: 'Café especial com o doce sabor de morango',
-    preco: 13.25,
-    imagem: Cappucino,
-  },
 ]
 
 export const Home = () => {
@@ -139,7 +107,7 @@ export const Home = () => {
       </div>
       <div className="w-full">
         <p className={`${baloo.className} text-3xl mb-14`}>Nossos cafés</p>
-        <div className="flex flex-wrap  gap-x-14">
+        <div className="flex flex-wrap justify-between">
           {cafes.map((coffee, index) => (
             <CoffeeCard key={index} coffee={coffee} />
           ))}

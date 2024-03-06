@@ -18,6 +18,7 @@ const config: Config = {
         'yellow-light': '#F1E9C9',
         'base-card': '#F3F2F2',
         'purple-dark': '#4B2995',
+        'purple-brand': '#8047F8',
         'base-button': '#E6E5E5',
         'base-input': '#EDEDED',
         'yellow-brand': '#DBAC2C',

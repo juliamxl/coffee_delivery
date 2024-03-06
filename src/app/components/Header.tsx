@@ -16,6 +16,10 @@ export default function Header() {
     router.push(`/checkout`)
   }
 
+  const handleClickHome = () => {
+    router.push(`/home`)
+  }
+
   useEffect(() => {
     const quantity = getCartItemQuantity()
     setCartQuantity(quantity)
@@ -23,7 +27,12 @@ export default function Header() {
 
   return (
     <div className="h-28 flex items-center justify-between">
-      <Image src={Logo} alt="logo" />
+      <Image
+        src={Logo}
+        alt="logo"
+        onClick={handleClickHome}
+        className="hover:cursor-pointer"
+      />
       <div className="flex space-x-3">
         <div className="bg-purple-light flex h-10 items-center rounded-md p-4 space-x-1 text-purple-dark font-medium">
           <Image src={MapPin} alt="mappin" />
